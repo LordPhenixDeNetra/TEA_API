@@ -1,0 +1,12 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@imageProduct.edit.headline">Edit Image Product</h1>
+    <div>
+        <a routerLink="/imageProducts" class="btn btn-secondary" i18n="@@imageProduct.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@imageProduct.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="productId" rowType="number" i18n-label="@@imageProduct.productId.label" label="Product Id" />
+    <app-input-row [group]="editForm" field="image" i18n-label="@@imageProduct.image.label" label="Image" />
+    <input type="submit" i18n-value="@@imageProduct.edit.headline" value="Edit Image Product" class="btn btn-primary mt-4" />
+</form>

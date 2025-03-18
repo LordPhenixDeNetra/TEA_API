@@ -1,0 +1,15 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@oderDetails.add.headline">Add Oder Details</h1>
+    <div>
+        <a routerLink="/oderDetailss" class="btn btn-secondary" i18n="@@oderDetails.add.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="addForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="addForm" field="productId" rowType="number" i18n-label="@@oderDetails.productId.label" label="Product Id" />
+    <app-input-row [group]="addForm" field="oderId" rowType="number" i18n-label="@@oderDetails.oderId.label" label="Oder Id" />
+    <app-input-row [group]="addForm" field="quantity" rowType="number" i18n-label="@@oderDetails.quantity.label" label="Quantity" />
+    <app-input-row [group]="addForm" field="sellerId" rowType="number" i18n-label="@@oderDetails.sellerId.label" label="Seller Id" />
+    <app-input-row [group]="addForm" field="deliveryPersonId" rowType="number" i18n-label="@@oderDetails.deliveryPersonId.label" label="Delivery Person Id" />
+    <app-input-row [group]="addForm" field="buyerId" rowType="number" i18n-label="@@oderDetails.buyerId.label" label="Buyer Id" />
+    <input type="submit" i18n-value="@@oderDetails.add.headline" value="Add Oder Details" class="btn btn-primary mt-4" />
+</form>

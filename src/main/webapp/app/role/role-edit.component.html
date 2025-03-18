@@ -1,0 +1,11 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@role.edit.headline">Edit Role</h1>
+    <div>
+        <a routerLink="/roles" class="btn btn-secondary" i18n="@@role.edit.back">Back to list</a>
+    </div>
+</div>
+<form [formGroup]="editForm" (ngSubmit)="handleSubmit()">
+    <app-input-row [group]="editForm" field="id" rowType="number" i18n-label="@@role.id.label" label="Id" />
+    <app-input-row [group]="editForm" field="roleName" rowType="select" [options]="{'CUSTOMER': 'CUSTOMER', 'SELLER': 'SELLER', 'SHIPPER': 'SHIPPER', 'ADMIN': 'ADMIN'}" i18n-label="@@role.roleName.label" label="Role Name" />
+    <input type="submit" i18n-value="@@role.edit.headline" value="Edit Role" class="btn btn-primary mt-4" />
+</form>

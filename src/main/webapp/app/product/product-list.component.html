@@ -1,0 +1,41 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@product.list.headline">Products</h1>
+    <div>
+        <a routerLink="/products/add" class="btn btn-primary ms-2" i18n="@@product.list.createNew">Create new Product</a>
+    </div>
+</div>
+@if (!products || products.length === 0) {
+<div i18n="@@product.list.empty">No Products could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@product.id.label">Id</th>
+                <th scope="col" i18n="@@product.libelle.label">Libelle</th>
+                <th scope="col" i18n="@@product.stock.label">Stock</th>
+                <th scope="col" i18n="@@product.categorie.label">Categorie</th>
+                <th scope="col" i18n="@@product.seller.label">Seller</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of products; track product.id) {
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.libelle }}</td>
+                <td>{{ product.stock }}</td>
+                <td>{{ product.categorie }}</td>
+                <td>{{ product.seller }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/products/edit', product.id]" class="btn btn-sm btn-secondary" i18n="@@product.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(product.id!)" class="btn btn-sm btn-secondary" i18n="@@product.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}

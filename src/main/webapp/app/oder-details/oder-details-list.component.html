@@ -1,0 +1,45 @@
+<div class="d-flex flex-wrap mb-4">
+    <h1 class="flex-grow-1" i18n="@@oderDetails.list.headline">Oder Detailses</h1>
+    <div>
+        <a routerLink="/oderDetailss/add" class="btn btn-primary ms-2" i18n="@@oderDetails.list.createNew">Create new Oder Details</a>
+    </div>
+</div>
+@if (!oderDetailses || oderDetailses.length === 0) {
+<div i18n="@@oderDetails.list.empty">No Oder Detailses could be found.</div>
+} @else {
+<div class="table-responsive">
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th scope="col" i18n="@@oderDetails.id.label">Id</th>
+                <th scope="col" i18n="@@oderDetails.productId.label">Product Id</th>
+                <th scope="col" i18n="@@oderDetails.oderId.label">Oder Id</th>
+                <th scope="col" i18n="@@oderDetails.quantity.label">Quantity</th>
+                <th scope="col" i18n="@@oderDetails.sellerId.label">Seller Id</th>
+                <th scope="col" i18n="@@oderDetails.deliveryPersonId.label">Delivery Person Id</th>
+                <th scope="col" i18n="@@oderDetails.buyerId.label">Buyer Id</th>
+                <th><!-- --></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (oderDetails of oderDetailses; track oderDetails.id) {
+            <tr>
+                <td>{{ oderDetails.id }}</td>
+                <td>{{ oderDetails.productId }}</td>
+                <td>{{ oderDetails.oderId }}</td>
+                <td>{{ oderDetails.quantity }}</td>
+                <td>{{ oderDetails.sellerId }}</td>
+                <td>{{ oderDetails.deliveryPersonId }}</td>
+                <td>{{ oderDetails.buyerId }}</td>
+                <td>
+                    <div class="float-end text-nowrap">
+                        <a [routerLink]="['/oderDetailss/edit', oderDetails.id]" class="btn btn-sm btn-secondary" i18n="@@oderDetails.list.edit">Edit</a>
+                        <button type="button" (click)="confirmDelete(oderDetails.id!)" class="btn btn-sm btn-secondary" i18n="@@oderDetails.list.delete">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
