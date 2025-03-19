@@ -2,8 +2,12 @@ package com.netradev.tout_est_africain.service;
 
 import com.netradev.tout_est_africain.domain.OderDetails;
 import com.netradev.tout_est_africain.model.OderDetailsDTO;
+import com.netradev.tout_est_africain.model.OrderDTO;
 import com.netradev.tout_est_africain.repos.OderDetailsRepository;
+import com.netradev.tout_est_africain.repos.ProductRepository;
 import com.netradev.tout_est_africain.util.NotFoundException;
+
+import java.math.BigDecimal;
 import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -13,9 +17,11 @@ import org.springframework.stereotype.Service;
 public class OderDetailsService {
 
     private final OderDetailsRepository oderDetailsRepository;
+    private final ProductRepository productRepository;
 
-    public OderDetailsService(final OderDetailsRepository oderDetailsRepository) {
+    public OderDetailsService(final OderDetailsRepository oderDetailsRepository, final ProductRepository productRepository) {
         this.oderDetailsRepository = oderDetailsRepository;
+        this.productRepository = productRepository;
     }
 
     public List<OderDetailsDTO> findAll() {
@@ -44,6 +50,33 @@ public class OderDetailsService {
         oderDetailsRepository.save(oderDetails);
     }
 
+    public List<OderDetailsDTO> findByOrderId(Long orderId) {
+        List<OderDetails> details = oderDetailsRepository.findByOderId(orderId);
+        return details.stream()
+            .map(detail -> mapToDTO(detail, new OderDetailsDTO()))
+            .toList();
+    }
+
+    /**
+     * Calcule le montant total d'une commande en additionnant le prix de chaque article.
+     *
+     * @param orderId L'ID de la commande dont on veut calculer le total
+     * @return Le montant total de la commande
+     */
+    public BigDecimal calculateOrderTotal(Long orderId) {
+        List<OderDetails> details = oderDetailsRepository.findByOderId(orderId);
+
+        return details.stream()
+            .map(detail -> detail.getUnitPrice().multiply(new BigDecimal(detail.getQuantity())))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+//    public OrderDTO getOrderWithDetails(Long id) {
+//        OrderDTO orderDTO = get(id);
+//        orderDTO.setOrderDetails(oderDetailsService.findByOrderId(id));
+//        return orderDTO;
+//    }
+
     public void delete(final Long id) {
         oderDetailsRepository.deleteById(id);
     }
@@ -57,6 +90,11 @@ public class OderDetailsService {
         oderDetailsDTO.setSellerId(oderDetails.getSellerId());
         oderDetailsDTO.setDeliveryPersonId(oderDetails.getDeliveryPersonId());
         oderDetailsDTO.setBuyerId(oderDetails.getBuyerId());
+        oderDetailsDTO.setUnitPrice(oderDetails.getUnitPrice());
+        if (productRepository != null) {
+            productRepository.findById(oderDetails.getProductId())
+                .ifPresent(product -> oderDetailsDTO.setProductName(product.getLibelle()));
+        }
         return oderDetailsDTO;
     }
 

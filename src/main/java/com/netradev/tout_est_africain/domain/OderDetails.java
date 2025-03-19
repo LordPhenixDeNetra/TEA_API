@@ -8,6 +8,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,6 +50,10 @@ public class OderDetails {
 
     @Column(nullable = false)
     private Long sellerId;
+
+    // Ajouter un champ prix unitaire pour garder une trace du prix au moment de la commande
+    @Column(nullable = false)
+    private BigDecimal unitPrice;
 
     @Column
     private Long deliveryPersonId;

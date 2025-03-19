@@ -12,6 +12,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+
+import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Set;
 import lombok.Getter;
@@ -44,6 +46,9 @@ public class Product {
 
     @Column
     private String libelle;
+
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
     @Column
     private Integer stock;

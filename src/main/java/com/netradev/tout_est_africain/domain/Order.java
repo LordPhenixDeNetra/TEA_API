@@ -1,19 +1,10 @@
 package com.netradev.tout_est_africain.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import com.netradev.tout_est_africain.model.OderStatus;
+import jakarta.persistence.*;
+
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -49,6 +40,13 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id")
     private User buyer;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private OderStatus status = OderStatus.PENDING;
+
+    @OneToMany(mappedBy = "oderId", cascade = CascadeType.ALL)
+    private Set<OderDetails> orderDetails = new HashSet<>();
 
     @ManyToMany
     @JoinTable(

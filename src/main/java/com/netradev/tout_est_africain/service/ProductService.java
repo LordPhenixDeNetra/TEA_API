@@ -72,6 +72,7 @@ public class ProductService {
         productDTO.setId(product.getId());
         productDTO.setLibelle(product.getLibelle());
         productDTO.setStock(product.getStock());
+        productDTO.setPrice(product.getPrice());
         productDTO.setCategorie(product.getCategorie() == null ? null : product.getCategorie().getId());
         productDTO.setSeller(product.getSeller() == null ? null : product.getSeller().getId());
         return productDTO;

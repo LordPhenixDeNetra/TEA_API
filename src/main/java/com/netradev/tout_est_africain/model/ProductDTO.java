@@ -1,8 +1,11 @@
 package com.netradev.tout_est_africain.model;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
 
 
 @Getter
@@ -19,5 +22,8 @@ public class ProductDTO {
     private Long categorie;
 
     private Long seller;
+
+    @NotNull
+    private BigDecimal price;
 
 }
