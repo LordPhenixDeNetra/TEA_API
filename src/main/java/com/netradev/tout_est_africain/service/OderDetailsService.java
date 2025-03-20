@@ -71,12 +71,6 @@ public class OderDetailsService {
             .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-//    public OrderDTO getOrderWithDetails(Long id) {
-//        OrderDTO orderDTO = get(id);
-//        orderDTO.setOrderDetails(oderDetailsService.findByOrderId(id));
-//        return orderDTO;
-//    }
-
     public void delete(final Long id) {
         oderDetailsRepository.deleteById(id);
     }

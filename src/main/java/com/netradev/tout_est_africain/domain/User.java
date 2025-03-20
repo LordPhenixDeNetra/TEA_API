@@ -1,17 +1,8 @@
 package com.netradev.tout_est_africain.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import com.netradev.tout_est_africain.model.AccountStatus;
+import jakarta.persistence.*;
+
 import java.time.OffsetDateTime;
 import java.util.Set;
 import lombok.Getter;
@@ -73,6 +64,44 @@ public class User {
 
     @OneToMany(mappedBy = "seller")
     private Set<Product> products;
+
+
+    // Nouveaux champs pour le système de réputation
+    @Column(nullable = false)
+    private boolean active = true;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus = AccountStatus.ACTIVE;
+
+    @Column(nullable = false)
+    private Double sellerRating = 0.0;
+
+    @Column(nullable = false)
+    private Double buyerRating = 0.0;
+
+    @Column(nullable = false)
+    private Double shipperRating = 0.0;
+
+    @Column(nullable = false)
+    private Integer successfulSales = 0;
+
+    @Column(nullable = false)
+    private Integer successfulPurchases = 0;
+
+    @Column(nullable = false)
+    private Integer successfulDeliveries = 0;
+
+    // Nouvelles relations
+    @OneToMany(mappedBy = "user")
+    private Set<UserBadge> badges;
+
+    @OneToMany(mappedBy = "targetUser")
+    private Set<Review> receivedReviews;
+
+    @OneToMany(mappedBy = "reviewer")
+    private Set<Review> givenReviews;
+
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
