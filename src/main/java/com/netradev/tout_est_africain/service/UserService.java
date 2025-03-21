@@ -75,6 +75,7 @@ public class UserService {
         userDTO.setEmail(user.getEmail());
         userDTO.setPassword(user.getPassword());
         userDTO.setTelephone(user.getTelephone());
+//        userDTO.setActive(user.isActive());
         userDTO.setRoles(user.getRoles().stream()
                 .map(role -> role.getId())
                 .toList());
@@ -88,6 +89,7 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setTelephone(userDTO.getTelephone());
+//        user.setActive(userDTO.isActive());
         final List<Role> roles = roleRepository.findAllById(
                 userDTO.getRoles() == null ? Collections.emptyList() : userDTO.getRoles());
         if (roles.size() != (userDTO.getRoles() == null ? 0 : userDTO.getRoles().size())) {
