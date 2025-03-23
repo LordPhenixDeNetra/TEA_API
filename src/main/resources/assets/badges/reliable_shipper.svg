@@ -1,1 +1,85 @@
 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- RELIABLE_SHIPPER -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientShipperReliable" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#56C596" />
+            <stop offset="100%" stop-color="#205045" />
+        </linearGradient>
+        <!-- Effet de brillance -->
+        <linearGradient id="shineReliable" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.5)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0.5)" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur -->
+        <filter id="glow-reliable" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <!-- Filtre d'ombre -->
+        <filter id="drop-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="3" stdDeviation="3" flood-opacity="0.3" />
+        </filter>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClipReliable">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+    </defs>
+
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientShipperReliable)" />
+
+    <!-- Effet de brillance -->
+    <rect x="-50" y="-50" width="400" height="400" fill="url(#shineReliable)" opacity="0.2" clip-path="url(#circleClipReliable)">
+        <animate attributeName="x" from="-150" to="150" dur="3s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Anneaux d'accent -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#56C596" stroke-width="2" opacity="0.3">
+        <animate attributeName="r" values="130;135;130" dur="4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="150" r="110" fill="none" stroke="white" stroke-width="1" opacity="0.5" />
+
+    <!-- Motif géométrique moderne en arrière-plan -->
+    <g clip-path="url(#circleClipReliable)" opacity="0.15">
+        <circle cx="150" cy="150" r="90" fill="none" stroke="#FFFFFF" stroke-width="20" stroke-dasharray="40 20" />
+        <circle cx="150" cy="150" r="60" fill="none" stroke="#FFFFFF" stroke-width="10" />
+    </g>
+
+    <!-- Icône de livraison moderne -->
+    <g transform="translate(150, 135) scale(1.2)" filter="url(#drop-shadow)">
+        <!-- Boîte de livraison -->
+        <rect x="-35" y="-15" width="70" height="60" rx="5" fill="#FFFFFF" />
+
+        <!-- Couvercle de la boîte -->
+        <path d="M-35,-15 L0,-35 L35,-15" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round" />
+
+        <!-- Ruban de la boîte -->
+        <path d="M0,-35 L0,45" stroke="#56C596" stroke-width="5" />
+        <path d="M-35,5 L35,5" stroke="#56C596" stroke-width="5" />
+
+        <!-- Icône de chronomètre (rapidité) -->
+        <circle cx="0" cy="15" r="15" fill="#FFFFFF" stroke="#56C596" stroke-width="2" />
+        <circle cx="0" cy="15" r="10" fill="none" stroke="#205045" stroke-width="1.5" />
+        <line x1="0" y1="15" x2="0" y2="8" stroke="#205045" stroke-width="2" stroke-linecap="round" />
+        <line x1="0" y1="15" x2="6" y2="18" stroke="#205045" stroke-width="2" stroke-linecap="round" />
+    </g>
+
+    <!-- Symbole de fiabilité (coche) -->
+    <g transform="translate(150, 80)">
+        <circle cx="0" cy="0" r="20" fill="rgba(255,255,255,0.2)" />
+        <path d="M-10,0 L-3,7 L10,-7" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+
+    <!-- Texte du badge avec effet de brillance -->
+<!--    <text x="150" y="220" font-family="'Segoe UI', Roboto, Arial" font-size="22" text-anchor="middle" fill="white" font-weight="bold" filter="url(#glow-reliable)">LIVREUR FIABLE</text>-->
+
+    <!-- Indicateur de niveau -->
+    <g transform="translate(150, 240)">
+        <circle cx="-25" cy="0" r="5" fill="#FFFFFF" />
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+        <circle cx="25" cy="0" r="5" fill="#FFFFFF" opacity="0.3" />
+    </g>
+</svg>

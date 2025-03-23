@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- FIVE_STAR_SELLER -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientFiveStars" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF6B6B" />
+            <stop offset="100%" stop-color="#8C1A4B" />
+        </linearGradient>
+        <!-- Gradient pour l'effet d'or -->
+        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF3A3" />
+            <stop offset="50%" stop-color="#FFD700" />
+            <stop offset="100%" stop-color="#E6AB00" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur dorée -->
+        <filter id="gold-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feFlood flood-color="#FFD700" result="gold-flood" />
+            <feComposite in="gold-flood" in2="blur" operator="in" result="gold-blur" />
+            <feComposite in="SourceGraphic" in2="gold-blur" operator="over" />
+        </filter>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClipFiveStars">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+    </defs>
+
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientFiveStars)" />
+
+    <!-- Effet de halo animé -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#FF6B6B" stroke-width="3" opacity="0.3">
+        <animate attributeName="r" values="130;140;130" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Cercle intérieur -->
+    <circle cx="150" cy="150" r="105" fill="none" stroke="white" stroke-width="1.5" opacity="0.3" />
+
+    <!-- Les 5 étoiles en cercle avec animation -->
+    <g filter="url(#gold-glow)">
+        <!-- Étoile 1 (haut) -->
+        <path d="M150,70 L157,90 L178,90 L162,102 L168,122 L150,110 L132,122 L138,102 L122,90 L143,90 Z"
+              fill="url(#goldGradient)">
+            <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite" />
+        </path>
+
+        <!-- Étoile 2 (droite haut) -->
+        <path d="M198,98 L204,115 L224,116 L208,127 L214,145 L198,135 L182,145 L188,127 L172,116 L192,115 Z"
+              fill="url(#goldGradient)" transform="scale(0.9)" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="0.4s" repeatCount="indefinite" />
+        </path>
+
+        <!-- Étoile 3 (droite bas) -->
+        <path d="M198,198 L204,215 L224,216 L208,227 L214,245 L198,235 L182,245 L188,227 L172,216 L192,215 Z"
+              fill="url(#goldGradient)" transform="scale(0.9)" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="0.8s" repeatCount="indefinite" />
+        </path>
+
+        <!-- Étoile 4 (gauche bas) -->
+        <path d="M102,198 L108,215 L128,216 L112,227 L118,245 L102,235 L86,245 L92,227 L76,216 L96,215 Z"
+              fill="url(#goldGradient)" transform="scale(0.9)" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="1.2s" repeatCount="indefinite" />
+        </path>
+
+        <!-- Étoile 5 (gauche haut) -->
+        <path d="M102,98 L108,115 L128,116 L112,127 L118,145 L102,135 L86,145 L92,127 L76,116 L96,115 Z"
+              fill="url(#goldGradient)" transform="scale(0.9)" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="1.6s" repeatCount="indefinite" />
+        </path>
+    </g>
+
+    <!-- Icône centrale de qualité premium -->
+    <circle cx="150" cy="150" r="30" fill="rgba(255,255,255,0.2)" />
+    <text x="150" y="155" font-family="'Segoe UI', Roboto, Arial" font-size="25" text-anchor="middle" fill="white" font-weight="bold" filter="url(#gold-glow)">5★</text>
+
+    <!-- Titre du badge avec effet de brillance -->
+<!--    <text x="150" y="220" font-family="'Segoe UI', Roboto, Arial" font-size="20" text-anchor="middle" fill="white" font-weight="bold" filter="url(#gold-glow)">SERVICE 5 ÉTOILES</text>-->
+
+    <!-- Indicateur special -->
+    <path d="M150,240 L156,250 L168,250 L158,257 L162,270 L150,262 L138,270 L142,257 L132,250 L144,250 Z" fill="url(#goldGradient)" stroke="#FFFFFF" stroke-width="0.5" opacity="0.9" />
+</svg>

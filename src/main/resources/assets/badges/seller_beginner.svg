@@ -1,35 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
-    <!-- VENDEUR DÉBUTANT -->
-    <g transform="translate(0, 0)">
-        <!-- Fond hexagonal avec gradient -->
-        <defs>
-            <linearGradient id="gradientBronze" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#F9C47B" />
-                <stop offset="100%" stop-color="#C17F42" />
-            </linearGradient>
-            <filter id="glow1" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="4" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-        </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- SELLER_BEGINNER -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientBronze" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F9C47B" />
+            <stop offset="100%" stop-color="#C17F42" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur -->
+        <filter id="glow1" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <!-- Effet de brillance -->
+        <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.5)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0.5)" />
+        </linearGradient>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClip">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+    </defs>
 
-        <!-- Cercle de base -->
-        <circle cx="100" cy="100" r="75" fill="url(#gradientBronze)" />
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientBronze)" />
 
-        <!-- Éclat extérieur -->
-        <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(193, 127, 66, 0.3)" stroke-width="5" />
+    <!-- Effet de brillance -->
+    <rect x="-50" y="-50" width="400" height="400" fill="url(#shine)" opacity="0.2" clip-path="url(#circleClip)">
+        <animate attributeName="x" from="-150" to="150" dur="3s" repeatCount="indefinite" />
+    </rect>
 
-        <!-- Cercle intérieur -->
-        <circle cx="100" cy="100" r="65" fill="none" stroke="#FFF" stroke-width="2" opacity="0.5" />
+    <!-- Anneaux d'accent -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="rgba(193, 127, 66, 0.3)" stroke-width="5" />
+    <circle cx="150" cy="150" r="110" fill="none" stroke="#FFF" stroke-width="2" opacity="0.5" />
 
-        <!-- Étoile moderne (stylisée) -->
-        <path d="M100,40 L115,75 L155,75 L125,95 L135,130 L100,110 L65,130 L75,95 L45,75 L85,75 Z"
-              fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.8" filter="url(#glow1)" />
+    <!-- Étoile moderne (stylisée) -->
+    <path d="M150,80 L172,125 L222,125 L182,155 L195,200 L150,175 L105,200 L118,155 L78,125 L128,125 Z"
+          fill="none" stroke="#FFFFFF" stroke-width="4" opacity="0.8" filter="url(#glow1)" />
 
-        <!-- Titre du badge -->
-        <text x="100" y="155" font-family="'Segoe UI', Roboto, Arial" font-size="14" text-anchor="middle" fill="#FFF" font-weight="bold">VENDEUR DÉBUTANT</text>
+    <!-- Icône de paquet (produit) -->
+    <rect x="130" y="130" width="40" height="40" rx="5" fill="#FFFFFF" opacity="0.7" />
+    <line x1="130" y1="140" x2="170" y2="140" stroke="#C17F42" stroke-width="2" />
+    <line x1="150" y1="130" x2="150" y2="170" stroke="#C17F42" stroke-width="2" />
 
-        <!-- Indicateur de niveau (1 trait) -->
-        <rect x="85" y="170" width="30" height="3" rx="1.5" fill="#FFF" opacity="0.8" />
-    </g>
+    <!-- Titre du badge -->
+<!--    <text x="150" y="220" font-family="'Segoe UI', Roboto, Arial" font-size="22" text-anchor="middle" fill="#FFF" font-weight="bold">VENDEUR DÉBUTANT</text>-->
+
+    <!-- Indicateur de niveau (1 trait) -->
+    <rect x="135" y="240" width="30" height="4" rx="2" fill="#FFF" opacity="0.8" />
 </svg>

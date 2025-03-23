@@ -1,1 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- VERIFIED_ACCOUNT -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientVerified" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4ECDC4" />
+            <stop offset="100%" stop-color="#1A6F8C" />
+        </linearGradient>
+        <!-- Gradient pour l'effet de brillance -->
+        <linearGradient id="shineVerified" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0.7)" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur -->
+        <filter id="glow-verified" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="8" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClipVerified">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+    </defs>
 
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientVerified)" />
+
+    <!-- Effet de brillance -->
+    <rect x="-50" y="-50" width="400" height="400" fill="url(#shineVerified)" opacity="0.2" clip-path="url(#circleClipVerified)">
+        <animate attributeName="x" from="-150" to="150" dur="3s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Anneaux d'accent -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#4ECDC4" stroke-width="2" opacity="0.3">
+        <animate attributeName="r" values="130;135;130" dur="4s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="150" r="110" fill="none" stroke="white" stroke-width="1" opacity="0.5" />
+
+    <!-- Cercle intérieur pour le symbole de vérification -->
+    <circle cx="150" cy="140" r="50" fill="rgba(255,255,255,0.15)" />
+
+    <!-- Symbole de vérification (coche moderne) -->
+    <path d="M130,140 L145,160 L175,125" stroke="white" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-verified)" />
+
+    <!-- Badge shield outline -->
+    <path d="M110,175 L150,200 L190,175 L190,125 L150,100 L110,125 Z" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round" opacity="0.5" />
+
+    <!-- Motif de sécurité -->
+    <g clip-path="url(#circleClipVerified)" opacity="0.1">
+        <circle cx="150" cy="150" r="70" fill="none" stroke="white" stroke-width="20" stroke-dasharray="5 10" />
+        <path d="M50,50 L250,250 M50,250 L250,50" stroke="white" stroke-width="2" />
+    </g>
+
+    <!-- Texte du badge avec effet de brillance -->
+<!--    <text x="150" y="220" font-family="'Segoe UI', Roboto, Arial" font-size="22" text-anchor="middle" fill="white" font-weight="bold" filter="url(#glow-verified)">COMPTE VÉRIFIÉ</text>-->
+
+    <!-- Indicateur spécial -->
+    <g transform="translate(150, 240)">
+        <path d="M-30,0 A30,8 0 0,1 30,0" stroke="white" stroke-width="2" fill="none" opacity="0.8" />
+        <circle cx="0" cy="-5" r="3" fill="white" opacity="0.8" />
+    </g>
+</svg>

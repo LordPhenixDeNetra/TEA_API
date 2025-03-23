@@ -1,1 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- TWO_YEAR_MEMBER -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientTwoYear" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#336655" />
+            <stop offset="50%" stop-color="#45857A" />
+            <stop offset="100%" stop-color="#66A899" />
+        </linearGradient>
+        <!-- Effet de brillance -->
+        <linearGradient id="shineTwoYear" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.6)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0.6)" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur -->
+        <filter id="glow-two-year" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClipTwoYear">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+        <!-- Effet métallique -->
+        <filter id="metal-effect" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+    </defs>
 
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientTwoYear)" />
+
+    <!-- Effet de brillance amélioré -->
+    <rect x="-50" y="-50" width="400" height="400" fill="url(#shineTwoYear)" opacity="0.3" clip-path="url(#circleClipTwoYear)">
+        <animate attributeName="x" from="-150" to="150" dur="2.5s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Anneaux d'accent avec animation -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#45857A" stroke-width="3" opacity="0.4">
+        <animate attributeName="r" values="130;138;130" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.4;0.6;0.4" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="150" r="110" fill="none" stroke="white" stroke-width="2" opacity="0.5" />
+
+    <!-- Motif géométrique en arrière-plan -->
+    <g clip-path="url(#circleClipTwoYear)" opacity="0.2">
+        <circle cx="150" cy="150" r="80" fill="none" stroke="white" stroke-width="25" stroke-dasharray="20 10" />
+        <circle cx="150" cy="150" r="55" fill="none" stroke="white" stroke-width="10" />
+    </g>
+
+    <!-- Cercle pour le chiffre 2 -->
+    <circle cx="150" cy="120" r="50" fill="none" stroke="#FFFFFF" stroke-width="3" opacity="0.8" />
+
+    <!-- Grand chiffre 2 avec effet métallique -->
+    <text x="150" y="140" font-family="'Segoe UI', Roboto, Arial" font-size="80" text-anchor="middle" fill="white" font-weight="bold" filter="url(#glow-two-year)">2</text>
+
+    <!-- Symboles d'anniversaire -->
+    <g transform="translate(150, 120)" opacity="0.6">
+        <!-- Anneau de cercles -->
+        <circle cx="60" cy="0" r="6" fill="#FFFFFF" />
+        <circle cx="42.4" cy="42.4" r="6" fill="#FFFFFF" />
+        <circle cx="0" cy="60" r="6" fill="#FFFFFF" />
+        <circle cx="-42.4" cy="42.4" r="6" fill="#FFFFFF" />
+        <circle cx="-60" cy="0" r="6" fill="#FFFFFF" />
+        <circle cx="-42.4" cy="-42.4" r="6" fill="#FFFFFF" />
+        <circle cx="0" cy="-60" r="6" fill="#FFFFFF" />
+        <circle cx="42.4" cy="-42.4" r="6" fill="#FFFFFF" />
+    </g>
+
+    <!-- Texte du badge avec effet de brillance -->
+<!--    <text x="150" y="205" font-family="'Segoe UI', Roboto, Arial" font-size="20" text-anchor="middle" fill="white" font-weight="bold" filter="url(#glow-two-year)">MEMBRE DEPUIS</text>-->
+<!--    <text x="150" y="230" font-family="'Segoe UI', Roboto, Arial" font-size="20" text-anchor="middle" fill="white" font-weight="bold" filter="url(#glow-two-year)">2 ANS</text>-->
+
+    <!-- Indicateur de niveau avancé -->
+    <g transform="translate(150, 250)">
+        <rect x="-35" y="-4" width="20" height="8" rx="4" fill="#FFFFFF" />
+        <rect x="-10" y="-4" width="20" height="8" rx="4" fill="#FFFFFF" />
+        <rect x="15" y="-4" width="20" height="8" rx="4" fill="#FFFFFF" />
+    </g>
+</svg>

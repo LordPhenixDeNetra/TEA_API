@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- PREMIUM_SHIPPER -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientShipperPremium" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#1D976C" />
+            <stop offset="100%" stop-color="#004D40" />
+        </linearGradient>
+        <!-- Effet de luxe doré -->
+        <linearGradient id="goldGradientPremium" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF3A3" />
+            <stop offset="50%" stop-color="#FFD700" />
+            <stop offset="100%" stop-color="#E6AB00" />
+        </linearGradient>
+        <!-- Effet de brillance premium -->
+        <linearGradient id="shinePremium" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.7)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0.7)" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur dorée -->
+        <filter id="gold-glow-premium" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feFlood flood-color="#FFD700" result="gold-flood" />
+            <feComposite in="gold-flood" in2="blur" operator="in" result="gold-blur" />
+            <feComposite in="SourceGraphic" in2="gold-blur" operator="over" />
+        </filter>
+        <!-- Filtre d'ombre premium -->
+        <filter id="drop-shadow-premium" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="5" stdDeviation="5" flood-opacity="0.5" />
+        </filter>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClipPremium">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+        <!-- Filtre d'effet métallique -->
+        <filter id="metal-effect" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="turbulence" baseFrequency="0.05" numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="5" xChannelSelector="R" yChannelSelector="G" result="displaced"/>
+            <feComposite in="displaced" in2="SourceGraphic" operator="arithmetic" k1="0" k2="1" k3="0" k4="0" result="composite"/>
+        </filter>
+    </defs>
+
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientShipperPremium)" />
+
+    <!-- Effet de brillance luxueux avec animation -->
+    <rect x="-50" y="-50" width="400" height="400" fill="url(#shinePremium)" opacity="0.3" clip-path="url(#circleClipPremium)">
+        <animate attributeName="x" from="-150" to="150" dur="2s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Anneaux d'accent dorés avec animation -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="url(#goldGradientPremium)" stroke-width="3" opacity="0.6">
+        <animate attributeName="r" values="130;140;130" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.6;0.8;0.6" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="150" r="105" fill="none" stroke="white" stroke-width="2" opacity="0.4" />
+
+    <!-- Motif géométrique luxueux -->
+    <g clip-path="url(#circleClipPremium)" opacity="0.15">
+        <path d="M30,30 L270,270 M50,30 L270,250 M70,30 L270,230 M90,30 L270,210 M110,30 L270,190 M130,30 L270,170 M150,30 L270,150"
+              stroke="white" stroke-width="2" />
+    </g>
+
+    <!-- Icône de livraison premium -->
+    <g transform="translate(150, 135) scale(1.2)" filter="url(#drop-shadow-premium)">
+        <!-- Boîte de livraison premium avec effet métallique -->
+        <rect x="-45" y="-20" width="90" height="65" rx="10" fill="white" />
+
+        <!-- Couvercle de la boîte -->
+        <path d="M-45,-20 L0,-45 L45,-20" fill="none" stroke="white" stroke-width="6" stroke-linejoin="round" />
+
+        <!-- Ruban doré -->
+        <path d="M0,-45 L0,45" stroke="url(#goldGradientPremium)" stroke-width="8" />
+        <path d="M-45,5 L45,5" stroke="url(#goldGradientPremium)" stroke-width="8" />
+
+        <!-- Couronne premium -->
+        <path d="M-15,-35 L0,-45 L15,-35" stroke="url(#goldGradientPremium)" stroke-width="4" fill="none" stroke-linecap="round" />
+        <circle cx="0" cy="-40" r="3" fill="#FFD700" />
+
+        <!-- Badge premium avec effet d'or -->
+        <circle cx="0" cy="15" r="22" fill="url(#goldGradientPremium)" filter="url(#metal-effect)" />
+        <text x="0" y="20" font-family="'Segoe UI', Roboto, Arial" font-size="14" text-anchor="middle" fill="white" font-weight="bold" filter="url(#gold-glow-premium)">PRO</text>
+    </g>
+
+    <!-- Texte du badge avec effet de brillance dorée -->
+<!--    <text x="150" y="220" font-family="'Segoe UI', Roboto, Arial" font-size="22" text-anchor="middle" fill="white" font-weight="bold" filter="url(#gold-glow-premium)">LIVREUR PREMIUM</text>-->
+
+    <!-- Indicateur de niveau premium -->
+    <g transform="translate(150, 240)">
+        <path d="M-40,-4 L-20,-4 C-18,-4 -15,0 -15,0 C-15,0 -12,-4 -10,-4 L10,-4 C12,-4 15,0 15,0 C15,0 18,-4 20,-4 L40,-4"
+              stroke="url(#goldGradientPremium)" stroke-width="3" fill="none" stroke-linecap="round" />
+    </g>
+</svg>

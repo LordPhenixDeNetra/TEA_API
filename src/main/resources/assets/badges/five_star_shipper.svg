@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+    <!-- FIVE_STAR_SHIPPER -->
+    <defs>
+        <!-- Gradient principal -->
+        <linearGradient id="gradientFiveStarShipper" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0E6620" />
+            <stop offset="100%" stop-color="#043911" />
+        </linearGradient>
+        <!-- Gradient pour l'effet d'or -->
+        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFF3A3" />
+            <stop offset="50%" stop-color="#FFD700" />
+            <stop offset="100%" stop-color="#E6AB00" />
+        </linearGradient>
+        <!-- Filtre pour l'effet de lueur dorée -->
+        <filter id="gold-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="blur" />
+            <feFlood flood-color="#FFD700" result="gold-flood" />
+            <feComposite in="gold-flood" in2="blur" operator="in" result="gold-blur" />
+            <feComposite in="SourceGraphic" in2="gold-blur" operator="over" />
+        </filter>
+        <!-- Filtre pour l'effet de lueur verte -->
+        <filter id="green-glow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="4" result="blur" />
+            <feFlood flood-color="#0E6620" result="green-flood" />
+            <feComposite in="green-flood" in2="blur" operator="in" result="green-blur" />
+            <feComposite in="SourceGraphic" in2="green-blur" operator="over" />
+        </filter>
+        <!-- Masque circulaire -->
+        <clipPath id="circleClipFiveStarShipper">
+            <circle cx="150" cy="150" r="120" />
+        </clipPath>
+        <!-- Effet de brillance -->
+        <linearGradient id="shine" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.5)" />
+            <stop offset="50%" stop-color="rgba(255,255,255,0)" />
+            <stop offset="100%" stop-color="rgba(255,255,255,0.5)" />
+        </linearGradient>
+    </defs>
+
+    <!-- Cercle principal avec gradient -->
+    <circle cx="150" cy="150" r="120" fill="url(#gradientFiveStarShipper)" />
+
+    <!-- Effet de brillance -->
+    <rect x="-50" y="-50" width="400" height="400" fill="url(#shine)" opacity="0.2" clip-path="url(#circleClipFiveStarShipper)">
+        <animate attributeName="x" from="-150" to="150" dur="3s" repeatCount="indefinite" />
+    </rect>
+
+    <!-- Anneaux d'accent avec animation -->
+    <circle cx="150" cy="150" r="130" fill="none" stroke="#0E6620" stroke-width="3" opacity="0.4">
+        <animate attributeName="r" values="130;138;130" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.4;0.6;0.4" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="150" cy="150" r="105" fill="none" stroke="white" stroke-width="2" opacity="0.4" />
+
+    <!-- Boîte de livraison avec 5 étoiles -->
+    <g transform="translate(150, 140) scale(1.2)" filter="url(#green-glow)">
+        <!-- Boîte de livraison -->
+        <rect x="-40" y="-10" width="80" height="60" rx="5" fill="#FFFFFF" />
+
+        <!-- Couvercle de la boîte -->
+        <path d="M-40,-10 L0,-35 L40,-10" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linejoin="round" />
+
+        <!-- Ligne de la boîte -->
+        <path d="M-40,15 L40,15" stroke="#0E6620" stroke-width="2" />
+
+        <!-- Les 5 petites étoiles sur la boîte -->
+        <g filter="url(#gold-glow)">
+            <path d="M-25,0 L-23,5 H-18 L-22,8 L-20,13 L-25,10 L-30,13 L-28,8 L-32,5 H-27 Z" fill="url(#goldGradient)" opacity="0.9">
+                <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="0s" repeatCount="indefinite" />
+            </path>
+            <path d="M-12.5,0 L-10.5,5 H-5.5 L-9.5,8 L-7.5,13 L-12.5,10 L-17.5,13 L-15.5,8 L-19.5,5 H-14.5 Z" fill="url(#goldGradient)" opacity="0.9">
+                <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="0.4s" repeatCount="indefinite" />
+            </path>
+            <path d="M0,0 L2,5 H7 L3,8 L5,13 L0,10 L-5,13 L-3,8 L-7,5 H-2 Z" fill="url(#goldGradient)" opacity="0.9">
+                <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="0.8s" repeatCount="indefinite" />
+            </path>
+            <path d="M12.5,0 L14.5,5 H19.5 L15.5,8 L17.5,13 L12.5,10 L7.5,13 L9.5,8 L5.5,5 H10.5 Z" fill="url(#goldGradient)" opacity="0.9">
+                <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="1.2s" repeatCount="indefinite" />
+            </path>
+            <path d="M25,0 L27,5 H32 L28,8 L30,13 L25,10 L20,13 L22,8 L18,5 H23 Z" fill="url(#goldGradient)" opacity="0.9">
+                <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" begin="1.6s" repeatCount="indefinite" />
+            </path>
+        </g>
+    </g>
+
+    <!-- Grande étoile derrière la boîte -->
+    <path d="M150,60 L167,110 H220 L177,140 L195,190 L150,160 L105,190 L123,140 L80,110 H133 Z"
+          fill="none" stroke="url(#goldGradient)" stroke-width="3" opacity="0.6" filter="url(#gold-glow)" />
+
+    <!-- Texte du badge avec effet de brillance -->
+<!--    <text x="150" y="220" font-family="'Segoe UI', Roboto, Arial" font-size="20" text-anchor="middle" fill="white" font-weight="bold" filter="url(#green-glow)">LIVRAISON 5 ÉTOILES</text>-->
+
+    <!-- Indicateur special -->
+    <path d="M150,240 L156,250 L168,250 L158,257 L162,270 L150,262 L138,270 L142,257 L132,250 L144,250 Z" fill="url(#goldGradient)" stroke="#FFFFFF" stroke-width="0.5" opacity="0.9" />
+</svg>
