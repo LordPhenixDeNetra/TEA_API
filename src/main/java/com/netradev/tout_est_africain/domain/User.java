@@ -72,31 +72,31 @@ public class User {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private AccountStatus accountStatus = AccountStatus.ACTIVE;
+    private AccountStatus accountStatus = AccountStatus.DEACTIVATED;
 
     @Column(nullable = false)
-    private Double sellerRating;
-//    private Double sellerRating = 0.0;
+//    private Double sellerRating;
+    private Double sellerRating = 0.0;
 
     @Column(nullable = false)
-    private Double buyerRating;
-//    private Double buyerRating = 0.0;
+//    private Double buyerRating;
+    private Double buyerRating = 0.0;
 
     @Column(nullable = false)
-//    private Double shipperRating = 0.0;
-    private Double shipperRating;
+    private Double shipperRating = 0.0;
+//    private Double shipperRating;
 
     @Column(nullable = false)
-    private Integer successfulSales;
-//    private Integer successfulSales = 0;
+//    private Integer successfulSales;
+    private Integer successfulSales = 0;
 
     @Column(nullable = false)
-    private Integer successfulPurchases;
-//    private Integer successfulPurchases = 0;
+//    private Integer successfulPurchases;
+    private Integer successfulPurchases = 0;
 
     @Column(nullable = false)
-    private Integer successfulDeliveries;
-    //    private Integer successfulDeliveries = 0;
+//    private Integer successfulDeliveries;
+        private Integer successfulDeliveries = 0;
 
     // Nouvelles relations
     @OneToMany(mappedBy = "user")

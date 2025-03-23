@@ -76,6 +76,7 @@ public class UserService {
         userDTO.setPassword(user.getPassword());
         userDTO.setTelephone(user.getTelephone());
 //        userDTO.setActive(user.isActive());
+        userDTO.setAccountStatus(user.getAccountStatus());
         userDTO.setRoles(user.getRoles().stream()
                 .map(role -> role.getId())
                 .toList());
@@ -89,12 +90,28 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setTelephone(userDTO.getTelephone());
-//        user.setActive(userDTO.isActive());
-        final List<Role> roles = roleRepository.findAllById(
-                userDTO.getRoles() == null ? Collections.emptyList() : userDTO.getRoles());
-        if (roles.size() != (userDTO.getRoles() == null ? 0 : userDTO.getRoles().size())) {
-            throw new NotFoundException("one of roles not found");
+
+//        final List<Role> roles = roleRepository.findAllById(
+//                userDTO.getRoles() == null ? Collections.emptyList() : userDTO.getRoles());
+//
+//        if (roles.size() != (userDTO.getRoles() == null ? 0 : userDTO.getRoles().size())) {
+//            throw new NotFoundException("one of roles not found");
+//        }
+//        user.setRoles(new HashSet<>(roles));
+//        return user;
+
+        List<Long> roleIds = userDTO.getRoles();
+
+        if (roleIds == null || roleIds.isEmpty()) {
+            roleIds = List.of(10000L); // Ajout du rôle par défaut
         }
+
+        final List<Role> roles = roleRepository.findAllById(roleIds);
+
+        if (roles.size() != roleIds.size()) {
+            throw new NotFoundException("One of the roles was not found");
+        }
+
         user.setRoles(new HashSet<>(roles));
         return user;
     }

@@ -1,5 +1,8 @@
 package com.netradev.tout_est_africain.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.util.List;
@@ -38,4 +41,5 @@ public class UserDTO {
 
     private List<Long> roles;
 
+    private AccountStatus accountStatus;
 }
