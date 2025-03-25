@@ -79,4 +79,36 @@ public class ProductResource {
                 .collect(CustomCollectors.toSortedMap(User::getId, User::getUuid)));
     }
 
+    // Nouveaux endpoints pour les fonctionnalités enrichies
+
+    @GetMapping("/featured")
+    public ResponseEntity<List<ProductDTO>> getFeaturedProducts() {
+        // Par exemple, retourner les 10 produits les mieux notés
+        return ResponseEntity.ok(productService.findFeaturedProducts());
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<ProductDTO>> getProductsByCategory(@PathVariable Long categoryId) {
+        return ResponseEntity.ok(productService.findByCategory(categoryId));
+    }
+
+    @GetMapping("/seller/{sellerId}")
+    public ResponseEntity<List<ProductDTO>> getProductsBySeller(@PathVariable Long sellerId) {
+        return ResponseEntity.ok(productService.findBySeller(sellerId));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductDTO>> searchProducts(
+        @RequestParam(required = false) String query,
+        @RequestParam(required = false) Long categoryId,
+        @RequestParam(required = false) Boolean isOrganic,
+        @RequestParam(required = false) Boolean isHandmade,
+        @RequestParam(required = false) Boolean isFairTrade,
+        @RequestParam(required = false) Double minPrice,
+        @RequestParam(required = false) Double maxPrice) {
+
+        return ResponseEntity.ok(productService.searchProducts(
+            query, categoryId, isOrganic, isHandmade, isFairTrade, minPrice, maxPrice));
+    }
+
 }

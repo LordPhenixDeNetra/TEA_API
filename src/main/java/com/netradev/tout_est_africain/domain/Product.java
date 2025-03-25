@@ -1,17 +1,6 @@
 package com.netradev.tout_est_africain.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -53,6 +42,39 @@ public class Product {
     @Column
     private Integer stock;
 
+
+    // Nouveaux champs
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
+    @Column
+    private String origin;
+
+    @Column
+    private String materials;
+
+    @Column
+    private String dimensions;
+
+    @Column
+    private Double weight;
+
+    @Column
+    private Boolean isHandmade = false;
+
+    @Column
+    private Boolean isOrganic = false;
+
+    @Column
+    private Boolean isFairTrade = false;
+
+    @Column
+    private Double averageRating;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductSpecification> specifications;
+
+    // Existant
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categorie_id")
     private Categorie categorie;
@@ -63,6 +85,9 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private Set<Order> orders;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ImageProduct> images;
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

@@ -4,11 +4,14 @@ import com.netradev.tout_est_africain.model.ImageProductDTO;
 import com.netradev.tout_est_africain.service.ImageProductService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
+
+import java.io.File;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -53,6 +56,46 @@ public class ImageProductResource {
     public ResponseEntity<Void> deleteImageProduct(@PathVariable(name = "id") final Long id) {
         imageProductService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<ImageProductDTO> uploadImage(
+        @RequestParam("productId") Long productId,
+        @RequestParam("file") MultipartFile file,
+        @RequestParam(value = "isPrimary", defaultValue = "false") Boolean isPrimary,
+        @RequestParam(value = "alt", required = false) String alt,
+        @RequestParam(value = "displayOrder", required = false) Integer displayOrder) {
+
+        try {
+            // Logique pour sauvegarder le fichier
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+            String filePath = "uploads/products/" + fileName;
+
+            // Créer le répertoire si nécessaire
+            File dir = new File("uploads/products");
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+
+            // Sauvegarder le fichier
+            File dest = new File(filePath);
+            file.transferTo(dest);
+
+            // Créer l'enregistrement d'image
+            ImageProductDTO imageDTO = new ImageProductDTO();
+            imageDTO.setProductId(productId);
+            imageDTO.setImage(filePath);
+            imageDTO.setIsPrimary(isPrimary);
+            imageDTO.setAlt(alt);
+            imageDTO.setDisplayOrder(displayOrder);
+
+            Long imageId = imageProductService.create(imageDTO);
+            imageDTO.setId(imageId);
+
+            return ResponseEntity.ok(imageDTO);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 }

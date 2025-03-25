@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Getter
@@ -25,5 +26,30 @@ public class ProductDTO {
 
     @NotNull
     private BigDecimal price;
+
+    // Nouveaux champs
+    private String description;
+
+    private String origin;
+
+    private String materials;
+
+    private String dimensions;
+
+    private Double weight;
+
+    private Boolean isHandmade;
+
+    private Boolean isOrganic;
+
+    private Boolean isFairTrade;
+
+    private Double averageRating;
+
+    // Liste des images associées
+    private List<ImageProductDTO> images;
+
+    // Liste des spécifications
+    private List<ProductSpecificationDTO> specifications;
 
 }
