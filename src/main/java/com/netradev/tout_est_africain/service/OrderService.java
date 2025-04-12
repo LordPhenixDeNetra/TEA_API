@@ -6,7 +6,6 @@ import com.netradev.tout_est_africain.domain.User;
 import com.netradev.tout_est_africain.model.OderDetailsDTO;
 import com.netradev.tout_est_africain.model.OderStatus;
 import com.netradev.tout_est_africain.model.OrderDTO;
-import com.netradev.tout_est_africain.repos.OderDetailsRepository;
 import com.netradev.tout_est_africain.repos.OrderRepository;
 import com.netradev.tout_est_africain.repos.ProductRepository;
 import com.netradev.tout_est_africain.repos.UserRepository;

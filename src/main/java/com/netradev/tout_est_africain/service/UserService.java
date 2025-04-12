@@ -15,6 +15,8 @@ import jakarta.transaction.Transactional;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -43,6 +45,10 @@ public class UserService {
                 .toList();
     }
 
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
     public UserDTO get(final Long id) {
         return userRepository.findById(id)
                 .map(user -> mapToDTO(user, new UserDTO()))
@@ -54,6 +60,37 @@ public class UserService {
         mapToEntity(userDTO, user);
         System.out.println("UUID avant save: " + user.getUuid());
         return userRepository.save(user).getId();
+    }
+
+    /**
+     * Authentifie un utilisateur par son email et mot de passe
+     * @param email Email de l'utilisateur
+     * @param password Mot de passe
+     * @return L'utilisateur authentifié ou null si les identifiants sont incorrects
+     */
+    public UserDTO authenticate(String email, String password) {
+        // Vérifier si l'email existe
+        if (!emailExists(email)) {
+            return null;
+        }
+
+        try {
+            // Récupérer l'utilisateur
+            User user = userRepository.findByEmailIgnoreCase(email);
+
+            // Vérifier si l'utilisateur a été trouvé et si le mot de passe correspond
+            if (user != null && password.equals(user.getPassword())) {
+                // Vérifier si le compte est actif
+                if ("ACTIVE".equals(user.getAccountStatus().toString())) {
+                    return mapToDTO(user, new UserDTO());
+                }
+//                return mapToDTO(user, new UserDTO());
+            }
+        } catch (Exception e) {
+            System.err.println("Erreur lors de l'authentification : " + e.getMessage());
+        }
+
+        return null;
     }
 
     public void update(final Long id, final UserDTO userDTO) {
@@ -90,15 +127,6 @@ public class UserService {
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setTelephone(userDTO.getTelephone());
-
-//        final List<Role> roles = roleRepository.findAllById(
-//                userDTO.getRoles() == null ? Collections.emptyList() : userDTO.getRoles());
-//
-//        if (roles.size() != (userDTO.getRoles() == null ? 0 : userDTO.getRoles().size())) {
-//            throw new NotFoundException("one of roles not found");
-//        }
-//        user.setRoles(new HashSet<>(roles));
-//        return user;
 
         List<Long> roleIds = userDTO.getRoles();
 

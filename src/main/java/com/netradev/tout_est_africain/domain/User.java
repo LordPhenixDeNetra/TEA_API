@@ -92,6 +92,9 @@ public class User {
     @Column(nullable = false)
     private Integer successfulDeliveries = 0;
 
+    @Column(length = 16)
+    private String preferredLanguage = "fr"; // Langue préférée (fr, en, es, etc.)
+
     // Nouvelles relations
     @OneToMany(mappedBy = "user")
     private Set<UserBadge> badges;
@@ -101,7 +104,6 @@ public class User {
 
     @OneToMany(mappedBy = "reviewer")
     private Set<Review> givenReviews;
-
 
     @CreatedDate
     @Column(nullable = false, updatable = false)

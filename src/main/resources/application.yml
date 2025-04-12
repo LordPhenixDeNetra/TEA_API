@@ -50,5 +50,7 @@ error:
       UserEmailUnique: USER_EMAIL_UNIQUE
       RoleRoleNameUnique: ROLE_ROLE_NAME_UNIQUE
       OrderUuidUnique: ORDER_UUID_UNIQUE
+
+
 springdoc:
   pathsToMatch: /api/**

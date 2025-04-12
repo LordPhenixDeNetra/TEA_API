@@ -1,6 +1,7 @@
 package com.netradev.tout_est_africain.rest;
 
 import com.netradev.tout_est_africain.domain.Role;
+import com.netradev.tout_est_africain.domain.User;
 import com.netradev.tout_est_africain.model.UserDTO;
 import com.netradev.tout_est_africain.repos.RoleRepository;
 import com.netradev.tout_est_africain.service.UserService;
@@ -46,6 +47,30 @@ public class UserResource {
     public ResponseEntity<Long> createUser(@RequestBody @Valid final UserDTO userDTO) {
         final Long createdId = userService.create(userDTO);
         return new ResponseEntity<>(createdId, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/login")
+    @ApiResponse(responseCode = "201")
+    public ResponseEntity<UserDTO> login(@RequestBody Map<String, String> credentials) {
+        String email = credentials.get("email");
+        String password = credentials.get("password");
+//        // Authentifier l'utilisateur
+//        User user = userService.authenticate(email, password);
+//
+//        if (user != null) {
+//            // Créer une réponse avec les infos de l'utilisateur
+//            UserDTO userDTO = userService.mapToDTO(user, new UserDTO());
+//            // Ne pas renvoyer le mot de passe
+//            userDTO.setPassword(null);
+//
+//            return ResponseEntity.ok(userDTO);
+//        } else {
+//            return ResponseEntity
+//                .status(HttpStatus.UNAUTHORIZED)
+//                .body("Email ou mot de passe incorrect");
+//        }
+
+        return ResponseEntity.ok(userService.authenticate(email, password));
     }
 
     @PutMapping("/{id}")
