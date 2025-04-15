@@ -79,8 +79,6 @@ public class ProductResource {
                 .collect(CustomCollectors.toSortedMap(User::getId, User::getUuid)));
     }
 
-    // Nouveaux endpoints pour les fonctionnalités enrichies
-
     @GetMapping("/featured")
     public ResponseEntity<List<ProductDTO>> getFeaturedProducts() {
         // Par exemple, retourner les 10 produits les mieux notés
