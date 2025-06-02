@@ -100,6 +100,7 @@ public class OderDetailsService {
         oderDetails.setSellerId(oderDetailsDTO.getSellerId());
         oderDetails.setDeliveryPersonId(oderDetailsDTO.getDeliveryPersonId());
         oderDetails.setBuyerId(oderDetailsDTO.getBuyerId());
+        oderDetails.setUnitPrice(oderDetailsDTO.getUnitPrice());
         return oderDetails;
     }
 
